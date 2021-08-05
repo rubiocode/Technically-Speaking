@@ -18,6 +18,7 @@ Comment.init(
         //linking user to comment
         user_id: {
             type: DataTypes.INT,
+            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id',
@@ -45,7 +46,7 @@ Comment.init(
         sequelize,
         timestamp: true,
         freezeTableName: true,
-        underscore: true,
+        underscored: true,
         modelName: 'comment',
     }
 );

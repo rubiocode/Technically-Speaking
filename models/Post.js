@@ -21,7 +21,7 @@ Post.init(
         post_content: {
             // using text per sequelize documentation it had unlimited length text column vs string has 255 default length
             type: DataTypes.TEXT,
-            allowNull:false,
+            allowNull:true,
         },
         user_id: {
             type: DataTypes.INT,
@@ -35,7 +35,7 @@ Post.init(
         sequelize,
         timestamp: true,
         freezeTableName: true,
-        underscore: true,
+        underscored: true,
         modelName:'post'
     }
 );
