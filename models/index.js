@@ -19,17 +19,17 @@ Post.hasMany(Comment, {
 
 Post.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: CASCADE,
+    onDelete: 'CASCADE',
 });
 
 Comment.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: CASCADE,
+    onDelete: 'CASCADE',
 });
 
 Comment.belongsTo(Post, {
     foreignKey: 'post_id',
-    onDelete: CASCADE,
+    onDelete: 'CASCADE',
 });
 
 //exporting all schema files

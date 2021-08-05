@@ -17,7 +17,7 @@ Comment.init(
 
         //linking user to comment
         user_id: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'user',
@@ -27,7 +27,7 @@ Comment.init(
 
         //linking post to comment
         post_id: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'post',
                 key: 'id',
@@ -35,7 +35,7 @@ Comment.init(
         },
         comment_content: {
             //want to limit the amount of characters string has max 255
-            dataType: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1],

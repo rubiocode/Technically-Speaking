@@ -26,15 +26,15 @@ User.init(
             unique: true,
         },
         twitter:{
-            dataType: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         linkedin: {
-            dataType: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         github: {
-            dataType: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         email: {
@@ -57,7 +57,7 @@ User.init(
         //setting up two hooks for user creation and user update
         hooks: {
             beforeCreate: async (newUserData) => {
-
+                try {
                 //want to hash the password
                 const salt = await bcrypt.genSalt(10);
 
@@ -67,11 +67,23 @@ User.init(
                 //turning email to lowercase before adding to db
                 newUserData.email = newUserData.email.toLowerCase();
                 return newUserData;
+
+                } catch (e) {
+
+                    return e;
+
+                }
             },
 
             beforeUpdate: async (updatedUserData)=>{
-                updatedUserData.email = updatedUserData.email.toLowerCase();
-                return updatedUserData;
+                try {
+                    updatedUserData.email = await updatedUserData.email.toLowerCase();
+                    return updatedUserData;
+
+                } catch (e) {
+                    
+                    return e;
+                } 
             },
         },
 
