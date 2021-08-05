@@ -3,8 +3,12 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
-//Create a new Sequelize model for posts
-class User extends Model { }
+//Create a new Sequelize model for posts and checking password function 
+class User extends Model { 
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 //defining fields/columns on model
 User.init(
