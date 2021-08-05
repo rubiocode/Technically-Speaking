@@ -6,6 +6,7 @@ const seedComment = require('./commentData');
 
 //storing all functions in seeds files in a variable function
 const seedAll = async ()=> {
+    try{
         await sequelize.sync({ force:true });
 
         await seedUser();
@@ -13,9 +14,11 @@ const seedAll = async ()=> {
         await seedPost();
 
         await seedComment();
-        
-        process.exit(0);
 
+        process.exit(0);
+    }catch(e){
+        console.log('i am the error', e);
+    }
 };
 
 //invoking seedAll function
