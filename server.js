@@ -2,7 +2,7 @@
 const express = require('express');
 
 //setting up sequelize connection to our config folder and file
-const sequelize= require('/config/connection');
+const sequelize= require('./config/connection');
 
 //storing express as a function in a variable 
 const app = express();

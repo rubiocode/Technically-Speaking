@@ -1,5 +1,5 @@
 //requiring dependency
-const sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 require('dotenv').config();
 
