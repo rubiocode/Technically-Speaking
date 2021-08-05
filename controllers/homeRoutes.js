@@ -6,9 +6,11 @@ const { User, Post, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
     try {
-    const users = await User.findAll({});
+    const userData = await User.findAll({});
+    const users=userData.map(user => user.get({plain:true}));
 
-    res.json(users);
+    console.log(users);
+    res.render('homepage', {users});
     } catch (e) {
     res.status(400).json(e);
     }

@@ -1,5 +1,6 @@
 //Requiring dependencies
 const express = require('express');
+const exphbs= require('express-handlebars');
 
 //setting up sequelize connection to our config folder and file
 const sequelize= require('./config/connection');
@@ -12,6 +13,13 @@ const app = express();
 
 // creating a port 
 const PORT = process.env.PORT || 3001;
+
+//handlebars create
+const hbs =exphbs.create({});
+
+//setting express handlebars engine up 
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 //body parser middleware
 app.use(express.json());
