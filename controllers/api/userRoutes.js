@@ -10,6 +10,7 @@ const withAuth = require('../../utils/auth');
 //User logic: user needs to log in, log out, create new user, delete user, update user, find blog and comments for single user(?).
 
 //Create new user and stay logged in the session
+//POST/api/users
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create({
@@ -20,7 +21,13 @@ router.post('/', async (req, res) => {
             password: req.body.password,
         });
 
+        console.log(userData);
+
         req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+            req.session.twitter = userData.twitter;
+            req.session.github = userData.github;
             req.session.loggedIn = true;
 
             res.status(200).json(userData);
@@ -33,13 +40,23 @@ router.post('/', async (req, res) => {
 });
 
 //update user by id
+//PUT/api/users/:id
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        const updateUser = await User.update(req.body, {
-            where: {
-                id: req.params.id,
+        const updateUser = await User.update(
+            {
+                username: req.body.username,
+                twitter: req.body.twitter,
+                github: req.body.github,
+                email: req.body.email,
+                password: req.body.password,
+                individualHook: true
             },
-        });
+            {
+                where: {
+                    id: req.params.id,
+                },
+            });
         if (!updateUser[0]) {
             res.status(404).json({ message: 'No user with this id!' });
             return;
@@ -75,19 +92,12 @@ router.delete('/:id', withAuth, async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne(
-            { 
-                where: { email: req.body.email } 
+            {
+                where: { email: req.body.email }
             }
         );
-
-        if (!userData) {
-            res.status(400).json({ message: 'Incorrect email or password, please try again' });
-            return;
-        }
-
         const validPassword = await userData.checkPassword(req.body.password);
-
-        if (!validPassword) {
+        if (!userData || validPassword) {
             res.status(400).json({ message: 'Incorrect email or password, please try again' });
             return;
         }
@@ -120,20 +130,20 @@ router.post('/logout', (req, res) => {
 });
 
 //IS THIS FUNCTION NEEDED ANYMORE ? Setting up a GET/api/users
-/*router.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-    const userData = await User.findAll({
-        attributes: {exclude: ['password']}
-    });
-    const users=userData.map(user => user.get({plain:true}));
+        const userData = await User.findAll({
+            attributes: { exclude: ['password'] }
+        });
+        const users = userData.map(user => user.get({ plain: true }));
 
-    console.log(users);
-    
-    res.render('homepage', {users});
+        console.log(users);
+
+        res.render('homepage', { users });
     } catch (e) {
         console.error(e);
         res.status(400).json(e);
     }
-});*/
+});
 
 module.exports = router;

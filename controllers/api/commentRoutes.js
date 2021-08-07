@@ -1,5 +1,5 @@
 //requiring express and router function
-/*const router = require('express').Router();
+const router = require('express').Router();
 
 //deconstructing comment from model's folder 
 const { Comment } = require('../../models');
@@ -30,4 +30,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-//*/
+module.exports = router;
