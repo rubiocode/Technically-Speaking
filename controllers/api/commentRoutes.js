@@ -61,7 +61,6 @@ router.put('/:id', withAuth, async (req, res) => {
             const updateComment = await Comment.update(
                 {
                     user_id: req.session.user_id,
-                    post_id: req.body.post_id,
                     comment_content: req.body.comment_content,
                 },
                 {
@@ -87,7 +86,7 @@ router.put('/:id', withAuth, async (req, res) => {
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         if(req.session){
-            const deleteCommment = await Comment.destroy({
+            const deleteComment = await Comment.destroy({
                 where: {
                     id: req.params.id,
                 }
