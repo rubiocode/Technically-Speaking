@@ -21,8 +21,6 @@ router.post('/', async (req, res) => {
             password: req.body.password,
         });
 
-        console.log(userData);
-
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
@@ -32,6 +30,8 @@ router.post('/', async (req, res) => {
 
             res.status(200).json(userData);
         });
+
+        console.log("I am the new user", userData);
 
     } catch (e) {
         console.log(e);
