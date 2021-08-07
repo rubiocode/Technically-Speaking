@@ -1,5 +1,8 @@
-<ul>
-{{#each users as |user|}}
-<li>{{user.username}}</li>
+{{#each posts as |post|}}
+
+{{> post-info post }}
+</div>
+
+{{else}}
+<h6>there are currently no posts</h6>
 {{/each}}
-</ul>
