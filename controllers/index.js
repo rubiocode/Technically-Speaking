@@ -5,7 +5,7 @@ const router= require('express').Router();
 const homeRoutes= require('./homeRoutes.js');
 
 //Requiring API routes folder
-const apiRoutes = require('./apiRoutes');
+const apiRoutes = require('./api');
 
 // router so we can use homeRoutes and apiRoutes
 router.use('/', homeRoutes);

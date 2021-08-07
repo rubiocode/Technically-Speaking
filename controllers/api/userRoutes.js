@@ -4,6 +4,9 @@ const router = require('express').Router();
 //deconstructing user, post, and comment from model's folder 
 const { User, Post, Comment } = require('../../models');
 
+//require utils auth file
+const withAuth = require('../../utils/auth');
+
 //User logic: user needs to log in, log out, create new user, delete user, update user, find blog and comments for single user(?).
 
 //Create new user and stay logged in the session
@@ -12,7 +15,6 @@ router.post('/', async (req, res) => {
         const userData = await User.create({
             username: req.body.username,
             twitter: req.body.twitter,
-            linkedin: req.body.linkedin,
             github: req.body.github,
             email: req.body.email,
             password: req.body.password,
@@ -72,21 +74,21 @@ router.delete('/:id', withAuth, async (req, res) => {
 //Log in existing user
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
+        const userData = await User.findOne(
+            { 
+                where: { email: req.body.email } 
+            }
+        );
 
         if (!userData) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password, please try again' });
+            res.status(400).json({ message: 'Incorrect email or password, please try again' });
             return;
         }
 
         const validPassword = await userData.checkPassword(req.body.password);
 
         if (!validPassword) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password, please try again' });
+            res.status(400).json({ message: 'Incorrect email or password, please try again' });
             return;
         }
 
@@ -94,7 +96,6 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.twitter = userData.twitter;
-            req.session.linkedin - userData.linkedin;
             req.session.github = userData.github;
             req.session.logged_in = true;
 
