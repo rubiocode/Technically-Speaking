@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    {{{body}}}
+
+<div>
+    <header>
+        <nav>
+            {{#if loggedIn}}
+            <a href="/">homepage</a>
+            <a href="/dashboard">dashboard</a>
+            <a href="/dashboard/create/">create post</a>
+            <button id="logout">logout</button>
+            {{else}}
+            <a href="/">homepage</a>
+            <a href="/login">login</a>
+            {{/if}}
+        </nav>
+    </header>
+
+    <main>
+        {{{ body }}}
+    </main>
+
+    <footer>
+        <div>
+            <p>
+                <a href="/">homepage</a>{{#if loggedIn}} |
+                <a href="/dashboard/">dashboard</a> |
+                <a href="/dashboard/create/">create new post</a>
+                {{else}}
+                | <a href="/login/">login</a>
+                {{/if}}
+            </p>
+        </div>
+    </footer>
+</div>
+
+{{#if loggedIn}}
+<script src=""></script>
+{{/if}}
 </body>
+
 </html>
