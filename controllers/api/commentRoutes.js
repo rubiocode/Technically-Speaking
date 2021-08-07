@@ -2,11 +2,11 @@
 const router = require('express').Router();
 
 //deconstructing comment from model's folder 
-const { Comment } = require('../../models');
+const { User, Comment, Post } = require('../../models');
 
 //Comment logic: create new comment, update, delete and retrieve comments.
 
-// Get all comments
+// Get all comments and the blog and username they are attached to
 router.get('/', async (req, res) => {
     try {
         const commentData = await Comment.findAll({
