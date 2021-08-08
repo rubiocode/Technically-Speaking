@@ -88,7 +88,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
-//Log in existing user
+//Authentication for Log in existing user
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne(

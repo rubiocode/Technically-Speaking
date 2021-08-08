@@ -65,7 +65,40 @@ router.get('/login', async (req, res) => {
 });
 
 
-//grab single blog to view in the homepage
+//grab single post to view in the homepage
+router.get('/post/:id', async (req, res) => {
+    try {
+        const postData= await Post.findOne(
+            {
+                where: { 
+                    id: req.params.id
+                },
+                attributes: ['id', 'title', 'post_content'],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username', 'twitter', 'github']
+                    },
+                    {
+                        model: Comment,
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content']
+                    },
+                ],
+            },
+        );
+        if (!postData) {
+            res.status(404).json({message: 'No post found with this id!'});
+            return;
+        }
+        const posts = postData.map(post => post.get({ plain: true }));
+        console.log(post);
+        res.render('single-post', { posts, loggedIn: req.session.loggedIn });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).json(e);
+    }
+})
 
 
 
