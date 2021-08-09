@@ -19,7 +19,7 @@
 
 </head>
 
-<div class="wrapper">
+<div class="uk-container">
     <header>
         <h1 class="uk-heading-lead uk-text-bolder uk-padding uk-text-center uk-heading-line">
             <span><span class="uk-text-danger uk-text-italic">Tech</span><i class="fas fa-laptop-code"></i>nically Speaking</span></h1>
@@ -28,27 +28,27 @@
                 <ul class="uk-navbar-nav">
                     {{#if loggedIn}}
                     <li class="uk-active">
-                        <a href="/" class="navbar-item is-hoverable pt-1">homepage</a> 
+                        <a href="/" class="uk-navbar">Homepage</a> 
                     </li>
                     <li>
-                        | <a href="/dashboard" class="navbar-item is-hoverable pt-1">dashboard</a>
+                        | <a class="uk-navbar uk-link-text uk-link-muted" href="/dashboard">Dashboard</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
                                 <li class="uk-active">
-                                    <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">create
+                                    <a class="uk-link-text uk-link-muted" href="/dashboard/create/" class="uk-navbar">create
                                         post</a>
                                 </li>
                                 <li>
-                                    | <button id="logout" class="uk-button-danger">logout</button>
+                                    | <button id="logout" class="uk-button-danger">Logout</button>
                                 </li>
                             </ul>
                         </div>
                         {{else}}
                         <li>
-                            <a href="/">Homepage</a> 
+                            <a class="uk-link-text uk-link-muted" href="/">Homepage</a> 
                         </li>
                         <li>
-                            <a href="/login">Login</a>
+                            <a class="uk-link-text uk-link-muted" href="/login">Login</a>
                         </li>
                         {{/if}}
                     </li>
@@ -61,6 +61,8 @@
         {{{ body }}}
     </main>
 
+    <br></br>
+    <br></br>
     <footer class="uk-footer uk-text-center">
         <div>
             <p>
@@ -87,12 +89,13 @@
 
 {{#if loggedIn}}
 <!--Logout JS-->
-<script src="./js/logout.js"></script>
+<script src="/js/logout.js"></script>
 {{/if}}
 
 <!-- UIkit JS -->
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
+<script type="text/javascript" src="jquery-3.5.1.min.js"> </script>
 </body>
 
 </html>

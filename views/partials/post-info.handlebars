@@ -5,7 +5,7 @@
             <div class="uk-card-header">
                 <div class="uk-grid-small uk-flex-middle" uk-grid>
                     <div class="uk-width-expand">
-                        <h3 class="uk-card-title uk-margin-remove-bottom"><a href="/post/{{id}}"
+                        <h3 class="uk-card-title uk-margin-remove-bottom"><a href="/api/posts/{{id}}"
                                 class="uk-link-text uk-link-muted">{{title}} </a></h3>
                         <p "uk-text-meta uk-margin-remove-top uk-text-bold"> Written by: {{user.username}}
                             || <a class="uk-link-text uk-link-muted" href="https://twitter.com/{{user.twitter}}"><i
@@ -13,7 +13,7 @@
                             <a class="uk-link-text uk-link-muted" href="https://github.com/{{user.github}}"><i
                                     class="fab fa-github fa-lg"></i></a>
                         </p>
-                        <p class="uk-text-meta uk-margin-remove-top"><time>{{format_date created_at}}</time></p>
+                        <p class="uk-text-meta uk-margin-remove-top"><time>{{format_date post.created_at}}</time></p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <p>{{post_content}}</p>
             </div>
             <div class="uk-card-footer">
-                <a class="uk-text-bold uk-link-text uk-link-muted" href="/post/{{id}}"><i
+                <a class="uk-text-bold uk-link-text uk-link-muted" href="/api/post/{{id}}"><i
                         class="fas fa-comments fa-lg"></i> {{comments.length}} {{format_plural "Comment"
                     comments.length}}</a>
             </div>

@@ -1,18 +1,20 @@
-<form action="">
+<form class="new-post-form">
     <fieldset class="uk-fieldset">
         <a href="/dashboard" class="is-pulled-right"> &larr; Back to Dashboard</a>
         <legend class="uk-legend">Create new Blog</legend>>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Title"> Blog Title
+            <label for="post-title">Blog Title</label>
+            <input class="uk-input" type="text" placeholder="Enter Blog Title"  id="post-title" name="post-title">
         </div>
 
         <div class="uk-margin">
-            <textarea class="uk-textarea" rows="5" placeholder="Textarea">Blog Content</textarea>
+            <label for="post-content">Blog Content</label>
+            <textarea class="uk-textarea" rows="5" placeholder="Textarea" id="post-content" name="post-content"></textarea>
         </div>
 
         <input type="submit" value="Submit" id="submit" class="uk-button uk-button-default">
 
     </fieldset>
 </form>
-<script src="./js/add-post.js"></script>
+<script src="/js/add-post.js"></script>

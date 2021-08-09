@@ -1,18 +1,17 @@
-const loginFormHandler = async (event) => {
+const newFormHandler = async (event) => {
     event.preventDefault();
 
 
     // Grab HTML elements and store them in variables
-    const emailEl = $('#email-login').val().trim();
-    const passwordEl = $('#password-login').val().trim();
+    const titleEl = $('input[name"post-title"]').val();
+    const postEl = $('input[name"post-content"]').val();
 
     //fetching api route
-    if(emailEl && passwordEl){
-    const response = await fetch(`/api/users/login`, {
+    const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
-            emailEl,
-            passwordEl,
+            titleEl,
+            postEl,
         }),
         headers: {
             'Content-Type': 'application/json',
@@ -24,8 +23,8 @@ const loginFormHandler = async (event) => {
     } else {
         alert(response.statusText);
     }
-    }
+
 }
 
 //event listeners
-$('.login-form').on('submit', loginFormHandler);
+$('.new-post-form').on('submit', newFormHandler);
