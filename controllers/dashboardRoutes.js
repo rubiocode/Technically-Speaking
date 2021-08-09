@@ -37,6 +37,7 @@ router.get('/', withAuth, async (req, res) => {
         const posts= postData.map(post => post.toJSON());
         res.render('dashboard', {posts, loggedIn: true});
     } catch (e) {
+        console.log(e.message, "ERRRRRRRRRROOOOOOR");
     res.status(500).json(e);
     }
 });

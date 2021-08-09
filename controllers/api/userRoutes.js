@@ -111,7 +111,7 @@ router.get('/:id', async (req, res) => {
         });
 
         if (!userData) {
-            res.status(404).json({ message: 'No user found with that id!'});
+            res.status(404).json({ message: 'No user found with that id!' });
             return;
         }
         res.status(200).json(userData);
@@ -156,12 +156,15 @@ router.post('/login', async (req, res) => {
 
 //Log out user
 router.post('/logout', (req, res) => {
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204).end();
+            res
+                .status(204)
+                .json({ message: 'You are now logged out!' })
+                .end();
         });
     } else {
-        res.status(404).end();
+        res.status(400).end();
     }
 });
 
