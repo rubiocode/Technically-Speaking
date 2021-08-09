@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 
 //Create a new Sequelize model for posts and checking password function 
 class User extends Model { 
-    checkPassword(loginPw) {
+    async checkPassword(loginPw) {
+        
         return bcrypt.compareSync(loginPw, this.password);
     }
 }
@@ -56,16 +57,16 @@ User.init(
                 try {
                 //want to hash the password
                 const salt = await bcrypt.genSalt(10);
-
+                    console.log(newUserData.password);
                 //hash everything in the event of getting hacked
-                newUserData.password = await bcrypt.hash(req.body.password, salt);
-
+                newUserData.password = await bcrypt.hash(newUserData.password, salt);
+                    console.log(newUserData.password);
                 //turning email to lowercase before adding to db
                 newUserData.email = newUserData.email.toLowerCase();
                 return newUserData;
 
                 } catch (e) {
-
+                    console.log(e);
                     return e;
 
                 }

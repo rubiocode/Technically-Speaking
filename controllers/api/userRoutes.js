@@ -13,6 +13,7 @@ const withAuth = require('../../utils/auth');
 //POST/api/users
 router.post('/', async (req, res) => {
     try {
+        console.log(req.body);
         const userData = await User.create({
             username: req.body.username,
             twitter: req.body.twitter,
@@ -124,6 +125,7 @@ router.get('/:id', async (req, res) => {
 //Authentication for Log in existing user
 router.post('/login', async (req, res) => {
     try {
+        console.log(req.body);
         const userData = await User.findOne(
             {
                 where: {
@@ -131,9 +133,9 @@ router.post('/login', async (req, res) => {
                 },
             },
         );
-            console.log('error 1');
-        const validPassword = userData.checkPassword(req.body.password);
-
+            console.log(userData);
+        const validPassword = await userData.checkPassword(req.body.password);
+            console.log(validPassword);
         if (!userData || !validPassword) {
             res.status(400).json({ message: 'Incorrect email or password, please try again' });
             return;
