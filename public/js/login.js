@@ -1,31 +1,25 @@
-const loginFormHandler = async (event) => {
+async function loginFormHandler(event) {
     event.preventDefault();
 
+    const email = document.querySelector('#email-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
 
-    // Grab HTML elements and store them in variables
-    const emailEl = $('#email-login').val().trim();
-    const passwordEl = $('#password-login').val().trim();
+    if (email && password) {
+        const response = await fetch('/api/users/login', {
+            method: 'post',
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-    //fetching api route
-    if(emailEl && passwordEl){
-    const response = await fetch(`/api/users/login`, {
-        method: 'POST',
-        body: JSON.stringify({
-            emailEl,
-            passwordEl,
-        }),
-        headers: {
-            'Content-Type': 'application/json',
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert(response.statusText);
         }
-    });
-
-    if (response.ok) {
-        document.location.replace('/dashboard');
-    } else {
-        alert(response.statusText);
-    }
     }
 }
 
-//event listeners
-$('.login-form').on('submit', loginFormHandler);
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);

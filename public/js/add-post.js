@@ -1,20 +1,17 @@
-const newFormHandler = async (event) => {
+async function newFormHandler(event) {
     event.preventDefault();
 
+    const title = document.querySelector('input[name="post-title"]').value;
+    const post_content = document.querySelector('input[name="post-content"]').value;
 
-    // Grab HTML elements and store them in variables
-    const titleEl = $('input[name"post-title"]').val();
-    const postEl = $('input[name"post-content"]').val();
-
-    //fetching api route
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
-            titleEl,
-            postEl,
+            title,
+            post_content
         }),
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         }
     });
 
@@ -23,8 +20,6 @@ const newFormHandler = async (event) => {
     } else {
         alert(response.statusText);
     }
-
 }
 
-//event listeners
-$('.new-post-form').on('submit', newFormHandler);
+document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);

@@ -1,38 +1,34 @@
-const signupFormHandler= async (event)=>{
+async function signupFormHandler(event) {
     event.preventDefault();
 
-    //grab HTML elements and store them in variables
-    const emailEl = $('#email-signup').val().trim();
-    const githubEl = $('#github-signup').val().trim();
-    const passwordEl = $('#password-signup').val().trim();
-    const twitterEl = $('#twitter-signup').val().trim();
-    const usernameEl = $('#username-signup').val().trim();
+    const username = document.querySelector('#username-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+    const twitter = document.querySelector('#twitter-signup').value.trim();
+    const github = document.querySelector('#github-signup').value.trim();
 
-
-//Fetch POST request 
-    if (emailEl && passwordEl && usernameEl) {
+    if (username && email && password) {
         const response = await fetch('/api/users', {
-            method: 'POST',
+            method: 'post',
             body: JSON.stringify({
-                emailEl,
-                githubEl,
-                passwordEl,
-                twitterEl,
-                usernameEl,
+                username,
+                email,
+                twitter,
+                github,
+                password
             }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         });
 
-        if (response.ok){
+        // check the response status
+        if (response.ok) {
+            console.log('success');
             document.location.replace('/dashboard');
-        }else{
+        } else {
+            console.log('error');
             alert(response.statusText);
         }
     }
-};
+}
 
-
-//event listener
-$('.signup-form').on('submit', signupFormHandler);
+document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);

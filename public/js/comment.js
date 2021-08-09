@@ -1,22 +1,21 @@
-const commentFormHandler = async (event) => {
+async function commentFormHandler(event) {
     event.preventDefault();
 
+    const comment_text = document.querySelector('textarea[name="comment-body"]').value.trim();
 
-    // Grab HTML elements and store them in variables
-    const commentEl = $('textarea[name"comment-body"]').val().trim();
-    const postEl = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+    const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
 
-    //fetching api route
-    if (commentEl) {
-
-        const response = await fetch(`/api/comments`, {
+    if (comment_text) {
+        const response = await fetch('/api/comments', {
             method: 'POST',
             body: JSON.stringify({
-                commentEl,
-                postEl,
+                post_id,
+                comment_text
             }),
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
 
@@ -25,11 +24,7 @@ const commentFormHandler = async (event) => {
         } else {
             alert(response.statusText);
         }
-
     }
-
-
 }
 
-//event listeners
-$('.comment-form').on('submit', commentFormHandler);
+document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);

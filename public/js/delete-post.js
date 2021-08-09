@@ -1,18 +1,17 @@
-const deleteFormHandler = async (event) => {
+async function deleteFormHandler(event) {
     event.preventDefault();
 
+    const id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
 
-    // Grab HTML elements and store them in variables
-    const idEl = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-
-    //fetching api route
-    const response = await fetch(`/api/posts/${idEl}`, {
+    const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
         body: JSON.stringify({
-            post_id: id,
+            post_id: id
         }),
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         }
     });
 
@@ -24,5 +23,4 @@ const deleteFormHandler = async (event) => {
 
 }
 
-//event listeners
-$('.delete-post-button').on('click', deleteFormHandler);
+document.querySelector('.delete-post-btn').addEventListener('click', deleteFormHandler);
