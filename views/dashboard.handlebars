@@ -1,18 +1,40 @@
- <div class="mb-5 pt-3">
-        <a href="/dashboard/create/"><button id="create-post" class="button is-primary is-pulled-right">create post</button></a>
-        
-        <h2 class="title pb-4">dashboard: your posts</h2><hr>
-{{#if posts.length}}
+<div>
+
+    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-overlay">Open
+        Dashboard</button>
+
+    <h1 class="uk-heading-lead uk-text-center"> Here are your posts</h1>
+    <div>
+        {{#if posts.length}}
     </div>
-
     {{#each posts as |post|}}
-        {{> post-info post}}
-        
-            <a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">edit post</button></a>
-        </div>
-    {{/each}}
-
+    {{> post-info post}}
+    <a href="/dashboard/edit/{{post.id}}"><button class="uk-button uk-button-warning">Edit Post</button></a>
+    || <a href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-muted">Create
+                        Post</button></a>
+</div>
+{{/each}}
 {{else}}
-<h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
+<h6 class="uk-heading-medium uk-text-italic uk-text-center">You do not have any posts at this moment</h6>
 
 {{/if}}
+
+<div id="offcanvas-overlay" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+
+        <h3>Welcome {{user.username}}!!</h3>
+
+        <ul>
+            <li><a href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-muted">Create
+                        Post</button></a>
+            </li>
+            <li>
+                <a href="/"><button class="uk-button uk-button-muted">Back to Home</button></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>

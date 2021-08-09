@@ -1,24 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="uk-background-muted">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Technically Speaking</title>
+    <link rel="shorcut icon" type="image/png" href="https://img.icons8.com/nolan/64/laptop.png">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <!--fontawesome-->
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!--CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
 </head>
 
-<div>
+<div class="wrapper">
     <header>
-        <nav>
-            {{#if loggedIn}}
-            <a href="/">homepage</a>
-            <a href="/dashboard">dashboard</a>
-            <a href="/dashboard/create/">create post</a>
-            <button id="logout">logout</button>
-            {{else}}
-            <a href="/">homepage</a>
-            <a href="/login">login</a>
-            {{/if}}
+        <h1 class="uk-heading-lead uk-text-bolder uk-padding uk-text-center uk-heading-line">
+            <span><span class="uk-text-danger uk-text-italic">Tech</span>nically Speaking</span></h1>
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    {{#if loggedIn}}
+                    <li class="uk-active">
+                        <a href="/" class="navbar-item is-hoverable pt-1">homepage</a> 
+                    </li>
+                    <li>
+                        | <a href="/dashboard" class="navbar-item is-hoverable pt-1">dashboard</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-active">
+                                    <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">create
+                                        post</a>
+                                </li>
+                                <li>
+                                    | <button id="logout" class="uk-button-danger">logout</button>
+                                </li>
+                            </ul>
+                        </div>
+                        {{else}}
+                        <li>
+                            <a href="/">Homepage</a> 
+                        </li>
+                        <li>
+                            <a href="/login">Login</a>
+                        </li>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -26,23 +61,38 @@
         {{{ body }}}
     </main>
 
-    <footer>
+    <footer class="uk-footer uk-text-center">
         <div>
             <p>
-                <a href="/">homepage</a>{{#if loggedIn}} |
-                <a href="/dashboard/">dashboard</a> |
-                <a href="/dashboard/create/">create new post</a>
+                <a class="uk-link-text uk-link-muted" href="/"><i class="fas fa-home"></i></a>
+                {{#if loggedIn}} 
+                |<a class="uk-link-text uk-link-muted" href="/dashboard/">Dashboard</a> 
+                |<a class="uk-link-text uk-link-muted" href="/dashboard/create/">create new post</a>
                 {{else}}
-                | <a href="/login/">login</a>
+                | <a class="uk-link-text uk-link-muted" href="/login/">Login</a>
                 {{/if}}
+            </p>
+        </div>
+        <div class="row-is-full content has-text-centered">
+            <p>
+                <strong>Technically Speaking Blog</strong> | Created with <i class="fas fa-heart uk-link-text -uk-text-muted"></i> by <a class="uk-link-text uk-link-muted" href="https://github.com/rubiocode">Rubidia Rubio</a> | made
+                with <a class="uk-link-text uk-link-muted uk-text-bold" href="https://getuikit.com/">UIKit</a> | source code:
+                <a class="uk-link-text uk-link-muted" href="https://github.com/rubiocode/Technically-Speaking"><i class="fab fa-github"></i></a> | Got
+                questions? Click the envelope to send me an email:
+                <a class="uk-link-text uk-link-muted" href="mailto:w.rubidia.rubio@gmail.com"><i class="far fa-envelope"></i></a>
             </p>
         </div>
     </footer>
 </div>
 
 {{#if loggedIn}}
-<script src=""></script>
+<!--Logout JS-->
+<script src="./js/logout.js"></script>
 {{/if}}
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js"></script>
 </body>
 
 </html>

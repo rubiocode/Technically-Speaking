@@ -34,7 +34,8 @@ router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
             //include associated user and comment data
-            attributes: ['id', 'title', 'post_content', 'user_id'],
+            attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
+            order: [['created_at', 'DESC']],
             include: [
                 {
                     model: User,
@@ -42,10 +43,15 @@ router.get('/', async (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'user_id', 'post_id', 'comment_content'],
+                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
                 },
             ],
-        });
+        },
+        {
+            model: User,
+            attributes: ['username', 'twitter', 'github']
+        },
+    );
         
         res.status(200).json(postData);
     } catch (e) {
@@ -54,6 +60,40 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+//get a single post
+router.get('/:id', async (req, res) => {
+    try {
+        const postData = await Post.findOne(
+            {
+                where: { id: req.params.id },
+                attributes: ['id', 'title', 'created_at','post_content'],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username', 'twitter', 'github'],
+                    },
+                    {
+                        model: Comment,
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        include: {
+                            model: User,
+                            attributes: ['username', 'twitter', 'github'],
+                        },
+                    },
+                ],
+            },
+        );
+        if(!postData){
+            res.status(404).json({ message:'No post found with that id!'});
+            return;
+        }
+        res.status(200).json(postData);
+    } catch (e) {
+    console.log(e);
+    res.status(500).json(e);
+    }
+});
 //update a post
 router.put('/:id', withAuth, async (req, res) => {
     try {

@@ -1,26 +1,29 @@
-<div class="card mb-6">
-  <header class="card-header card-header-title has-background-grey-lighter">
-    
-        <div class="column">
-            <p class=" has-text-primary-light"></p>
-      <a href="/post/{{id}}"  class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
-      </div>
-
-      <div class="column">
-      <span class=""> </span>
-      </div>
-    
-  </header>
-
-    <div class="card-content">
-        <div class="content has-text-justified">
-            {{post_content}}
-        </div>
-            <div class="is-pulled-right">
-                <b>{{user.username}}</b> | 
-                <a href="https://twitter.com/{{user.twitter}}"><i class="fab fa-twitter"></i></a> 
-                <a href="https://github.com/{{user.github}}"><i class="fab fa-github"></i></a>
-                 | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+<div class="uk-container uk-margin">
+    <div class="uk-grid-column-medium uk-grid-row-large uk-text-center uk-flex-center uk-grid-match"
+        uk-grid uk-scrollspy="target: > div; cls: uk-animation-slide-bottom; delay: 250">
+        <div class="uk-card uk-card-default uk-card-hover">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom"><a href="/post/{{id}}"
+                                class="uk-link-text uk-link-muted">{{title}} </a></h3>
+                        <p "uk-text-meta uk-margin-remove-top uk-text-bold"> Written by: {{user.username}}
+                            || <a class="uk-link-text uk-link-muted" href="https://twitter.com/{{user.twitter}}"><i
+                                    class="fab fa-twitter fa-lg"></i></a>
+                            <a class="uk-link-text uk-link-muted" href="https://github.com/{{user.github}}"><i
+                                    class="fab fa-github fa-lg"></i></a>
+                        </p>
+                        <p class="uk-text-meta uk-margin-remove-top"><time>{{format_date created_at}}</time></p>
+                    </div>
+                </div>
             </div>
-        
-    </div>
+            <div class="uk-card-body">
+                <p>{{post_content}}</p>
+            </div>
+            <div class="uk-card-footer">
+                <a class="uk-text-bold uk-link-text uk-link-muted" href="/post/{{id}}"><i
+                        class="fas fa-comments fa-lg"></i> {{comments.length}} {{format_plural "Comment"
+                    comments.length}}</a>
+            </div>
+
+        </div>

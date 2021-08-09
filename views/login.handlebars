@@ -1,1 +1,24 @@
-form with client side validation?
+<form action="">
+  <fieldset class="uk-fieldset">
+    <a class="uk-link-text uk-link-muted" href="/dashboard" class="is-pulled-right"> &larr; Back to Dashboard</a>
+    <legend class="uk-legend">Login</legend>
+
+    <div class="uk-margin">
+      <label for="email-login">Email:</label>
+      <input class="uk-input" type="text" name="email-login" placeholder="Title" id="email-login">
+    </div>
+
+    <div class="uk-margin">
+      <label for="password-login">Password:</label>
+      <input class="uk-password" name="password-login" type="password" id="password-login" />
+    </div>
+    <div>
+      <input type="submit" value="Login" id="submit" class="uk-button uk-button-default">
+
+      <a class="uk-link-text uk-link-muted" href="/signup"><button type="button"
+          class="uk-button uk-button-default">Signup</button></a>
+    </div>
+  </fieldset>
+</form>
+<!-- javascript file-->
+<script src="./js/login.js"></script>

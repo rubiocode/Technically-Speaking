@@ -5,14 +5,15 @@
 <!-- only display if logged in -->
 {{#if loggedIn}}
 <form class="comment-form">
-  <div>
-    <textarea class="ml-5" name="comment-body"></textarea>
+  <fieldset class="uk-fieldset">
+  <div class="uk-margin">
+    <textarea class="uk-textarea" rows="5" placeholder="Textarea" name="comment-body"></textarea>
   </div>
 
-  <div>
-    <button class="button is-warning ml-5 mb-5" type="submit">add comment</button>
+  <div class="uk-margin">
+    <button class="uk-button uk-button-warning" type="submit">Add Comment</button>
   </div>
-  
+  </fieldset>
 </form>
 {{/if}}
 

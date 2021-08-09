@@ -88,13 +88,46 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
+//grab user by id
+router.get('/:id', async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            attributes: { exlude: [password] },
+            where: { id: req.params.id },
+            include: [
+                {
+                    model: Post,
+                    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
+                },
+                {
+                    model: Comment,
+                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                    include: {
+                        model: Post,
+                        attributes: ['post_title']
+                    }
+                },
+            ]
+        });
+
+        if (!userData) {
+            res.status(404).json({ message: 'No user found with that id!'});
+            return;
+        }
+        res.status(200).json(userData);
+    } catch (e) {
+        console.log(e);
+        res.status(500).json(e);
+    }
+});
+
 //Authentication for Log in existing user
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne(
             {
-                where: { 
-                    email: req.body.email, 
+                where: {
+                    email: req.body.email,
                 },
             },
         );
@@ -142,7 +175,7 @@ router.get('/', async (req, res) => {
 
         console.log(users);
 
-        res.render('homepage', { users });
+        res.json(users);
     } catch (e) {
         console.error(e);
         res.status(400).json(e);

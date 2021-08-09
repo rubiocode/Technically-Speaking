@@ -20,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
                 where: {
                     user_id: req.session.user_id,
                 },
-                attributes: ['id', 'title', 'post_content'],
+                attributes: ['id', 'title', 'created_at', 'post_content'],
                 include: [
                     {
                         model: User,
@@ -28,7 +28,7 @@ router.get('/', withAuth, async (req, res) => {
                     },
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
                     },
                 ],
             },
@@ -50,11 +50,21 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 where: { 
                     id: req.params.id
                 },
-                attributes: ['id', 'title', 'post_content', 'user_id'],
-                include: {
-                    model: User,
-                    attributes: ['username', 'twitter', 'github'],
-                },
+                attributes: ['id', 'title', 'created_at', 'post_content', 'user_id'],
+                include: [
+                    {
+                        model: Comment,
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        include: {
+                            model: User,
+                            attributes: ['username', 'twitter', 'github'],
+                        }
+                    },
+                    {
+                        model: User,
+                        attributes: ['username', 'twitter', 'github'],
+                    }
+                ]
             },
         );
         if (!postData){
@@ -77,13 +87,23 @@ router.route('/create/', async (req, res)=>{
         const postData= await Post.findAll(
             {
                 where: {
-                    user_id: re .session.user_id,
+                    user_id: req.session.user_id,
                 },
-                attributes: ['id', 'title', 'post_content'],
-                include: {
-                    model: User,
-                    attributes: ['username', 'twitter', 'github']
-                },
+                attributes: ['id', 'title', 'created_at', 'post_content'],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username', 'twitter', 'github'],
+                    },
+                    {
+                        model: Comment,
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        include: {
+                            model: User,
+                            attributes: ['username', 'twitter', 'github'],
+                        },
+                    },
+                ],
             },
         );
 

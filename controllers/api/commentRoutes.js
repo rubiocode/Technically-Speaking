@@ -12,20 +12,7 @@ const withAuth = require('../../utils/auth');
 // Get all comments and the blog and username they are attached to
 router.get('/', async (req, res) => {
     try {
-        const commentData = await Comment.findAll({
-            //include associated user and blog data
-            attributes: ['id', 'user_id', 'post_id', 'comment_content'],
-            include: [
-                {
-                    model: User,
-                    attribute: ['user_username'],
-                },
-                {
-                    model: Post,
-                    attribute: ['post_title']
-                },
-            ],
-        });
+        const commentData = await Comment.findAll({})
         res.status(200).json(commentData);
     } catch (e) {
         console.log(e);
