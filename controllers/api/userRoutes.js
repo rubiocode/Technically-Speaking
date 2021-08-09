@@ -131,14 +131,14 @@ router.post('/login', async (req, res) => {
                 },
             },
         );
-
+            console.log('error 1');
         const validPassword = userData.checkPassword(req.body.password);
 
         if (!userData || !validPassword) {
             res.status(400).json({ message: 'Incorrect email or password, please try again' });
             return;
         };
-
+        console.log('error 2');
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
@@ -148,8 +148,10 @@ router.post('/login', async (req, res) => {
 
             res.status(200).json({ user: userData, message: 'Welcome Back!' });
         });
+
+        console.log ('error 3', req.session);
     } catch (e) {
-        console.log(e);
+        console.log('errooooor', e);
         res.status(400).json(e);
     }
 });
