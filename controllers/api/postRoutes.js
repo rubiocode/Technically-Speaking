@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
         const postData = await Post.findAll({
             //include associated user and comment data
             attributes: ['id', 'title', 'post_content', 'user_id', 'createdAt'],
-            order: [['created_at', 'DESC']],
+            order: [['createdAt', 'DESC']],
             include: [
                 {
                     model: User,
@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
         const postData = await Post.findOne(
             {
                 where: { id: req.params.id },
-                attributes: ['id', 'title', 'created_at','post_content'],
+                attributes: ['id', 'title', 'createdAt','post_content'],
                 include: [
                     {
                         model: User,

@@ -20,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
                 where: {
                     user_id: req.session.user_id,
                 },
-                attributes: ['id', 'title', 'created_at', 'post_content'],
+                attributes: ['id', 'title', 'createdAt', 'post_content'],
                 include: [
                     {
                         model: User,
@@ -28,7 +28,7 @@ router.get('/', withAuth, async (req, res) => {
                     },
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                     },
                 ],
             },
@@ -51,11 +51,11 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 where: { 
                     id: req.params.id
                 },
-                attributes: ['id', 'title', 'created_at', 'post_content', 'user_id'],
+                attributes: ['id', 'title', 'createdAt', 'post_content', 'user_id'],
                 include: [
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                         include: {
                             model: User,
                             attributes: ['username', 'twitter', 'github'],
@@ -90,7 +90,7 @@ router.route('/create/', async (req, res)=>{
                 where: {
                     user_id: req.session.user_id,
                 },
-                attributes: ['id', 'title', 'created_at', 'post_content'],
+                attributes: ['id', 'title', 'createdAt', 'post_content'],
                 include: [
                     {
                         model: User,
@@ -98,7 +98,7 @@ router.route('/create/', async (req, res)=>{
                     },
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                         include: {
                             model: User,
                             attributes: ['username', 'twitter', 'github'],

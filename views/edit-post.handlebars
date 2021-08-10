@@ -17,7 +17,7 @@
 
       <input type="submit" value="Submit" id="submit" class="uk-button uk-button-default">
       <div>
-        Created By: {{format_date post.created_at}}
+        Created By: {{format_date post.createdAt}}
         |
         <a class="uk-link-text uk-link-muted" href="/post/{{post.id}}">{{post.comments.length}} {{format_plural
           "comment" post.comments.length}}</a>
