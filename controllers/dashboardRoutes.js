@@ -15,7 +15,7 @@ const sequelize = require('../config/connection');
 //Get all personal posts from database
 router.get('/', withAuth, async (req, res) => {
     try {
-        const postData= await Post.findAll(
+        const postData = await Post.findAll(
             {
                 where: {
                     user_id: req.session.user_id,
@@ -34,11 +34,11 @@ router.get('/', withAuth, async (req, res) => {
             },
         );
 
-        const posts= postData.map(post => post.toJSON());
-        res.render('dashboard', {posts, loggedIn: true});
+        const posts = postData.map(post => post.toJSON());
+        res.render('dashboard', { posts, loggedIn: true });
     } catch (e) {
         console.log(e.message, "ERRRRRRRRRROOOOOOR");
-    res.status(500).json(e);
+        res.status(500).json(e);
     }
 });
 
@@ -46,16 +46,16 @@ router.get('/', withAuth, async (req, res) => {
 //Grab a specific post by its id to view and edit
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
-        const postData= await Post.findOne(
+        const postData = await Post.findOne(
             {
-                where: { 
+                where: {
                     id: req.params.id
                 },
-                attributes: ['id', 'title', 'createdAt', 'post_content', 'user_id'],
+                attributes: ['id', 'title', 'created_at', 'post_content', 'user_id'],
                 include: [
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
                         include: {
                             model: User,
                             attributes: ['username', 'twitter', 'github'],
@@ -68,13 +68,13 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 ]
             },
         );
-        if (!postData){
-            res.status(404).json({message: 'Post not found with this id'});
+        if (!postData) {
+            res.status(404).json({ message: 'Post not found with this id' });
             return;
         }
 
         res.status(200).json(postData.toJSON());
-        res.render('edit-post', {posts, loggedIn: true});
+        res.render('edit-post', { posts, loggedIn: true });
     } catch (e) {
         console.log(e);
         res.status(500).json(e);
@@ -83,37 +83,40 @@ router.get('/edit/:id', withAuth, async (req, res) => {
 
 
 //Create post from dashboard
-router.route('/create/', async (req, res)=>{
-    try {
-        const postData= await Post.findAll(
+router.get('/create/', withAuth, (req, res) => {
+    Post.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [
+            'id',
+            'title',
+            'createdAt',
+            'post_content'
+        ],
+        include: [
             {
-                where: {
-                    user_id: req.session.user_id,
-                },
-                attributes: ['id', 'title', 'createdAt', 'post_content'],
-                include: [
-                    {
-                        model: User,
-                        attributes: ['username', 'twitter', 'github'],
-                    },
-                    {
-                        model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
-                        include: {
-                            model: User,
-                            attributes: ['username', 'twitter', 'github'],
-                        },
-                    },
-                ],
+                model: Comment,
+                attributes: ['id', 'comment_content', 'post_id', 'user_id', 'createdAt'],
+                include: {
+                    model: User,
+                    attributes: ['username', 'twitter', 'github']
+                }
             },
-        );
-
-        const posts= postData.map(post => post.toJSON());
-        res.render('create-post', {posts, loggedIn: true});
-    } catch (e) {
-        console.log(e);
-        res.status(500).json(e);
-    }
+            {
+                model: User,
+                attributes: ['username', 'twitter', 'github']
+            }
+        ]
+    })
+        .then(postData => {
+            const posts = postData.map(post => post.get({ plain: true }));
+            res.render('create-post', { posts, loggedIn: true });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 

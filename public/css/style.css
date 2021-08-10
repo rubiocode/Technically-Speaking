@@ -1,0 +1,36 @@
+.bounce-arrow {
+    color: black;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.bouncyArrow {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    25%,
+    55%,
+    75%,
+    100% {
+        transform: translateY(0);
+    }
+
+    45% {
+        transform: translateY(-20px);
+    }
+
+    65% {
+        transform: translateY(-10px);
+    }
+
+    85% {
+        transform: translateY(-5px);
+    }
+
+}

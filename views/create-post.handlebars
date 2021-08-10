@@ -1,7 +1,9 @@
-<form class="new-post-form">
+<a href="/dashboard" class="uk-link uk-link-muted" > <span uk-icon="icon: chevron-double-left; ratio: 2"></span> Back to Dashboard</a>
+<hr>
+
+<form class="new-post-form uk-form-width-large uk-margin-large-left">
     <fieldset class="uk-fieldset">
-        <a href="/dashboard" class="is-pulled-right"> &larr; Back to Dashboard</a>
-        <legend class="uk-legend">Create new Blog</legend>>
+        <legend class="uk-legend uk-text-center">Create new Blog</legend>
 
         <div class="uk-margin">
             <label for="post-title">Blog Title</label>
@@ -13,8 +15,9 @@
             <textarea class="uk-textarea" rows="5" placeholder="Textarea" id="post-content" name="post-content"></textarea>
         </div>
 
-        <input type="submit" value="Submit" id="submit" class="uk-button uk-button-default">
+        <button type="submit" value="Submit" id="submit" class="uk-button uk-button-default">Submit</button>
 
     </fieldset>
 </form>
+
 <script src="/js/add-post.js"></script>

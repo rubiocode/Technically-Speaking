@@ -74,7 +74,7 @@ router.get('/posts/:id', async (req, res) => {
                 where: { 
                     id: req.params.id
                 },
-                attributes: ['id', 'title', 'post_content'],
+                attributes: ['id', 'title', 'post_content', 'createdAt'],
                 include: [
                     {
                         model: User,
@@ -82,9 +82,9 @@ router.get('/posts/:id', async (req, res) => {
                     },
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                         include: {
-                            model: User, 
+                            model: User,
                             attributes: ['username', 'twitter', 'github'],
                         }
                     },
@@ -95,7 +95,7 @@ router.get('/posts/:id', async (req, res) => {
             res.status(404).json({message: 'No post found with this id!'});
             return;
         } console.log({postData})
-        const post = postData.get({ plain: true});
+        const post = postData.get({plain:true});
         console.log({post});
         res.render('single-post', { post, loggedIn: req.session.loggedIn });
 

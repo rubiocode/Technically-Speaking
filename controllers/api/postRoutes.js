@@ -13,7 +13,7 @@ const withAuth = require('../../utils/auth');
 //POST/api/posts
 router.post('/', withAuth,  async (req, res) => {
     try {
-        const postData = await Post.create({
+        const postData = Post.create({
             title: req.body.title,
             post_content: req.body.post_content,
             user_id: req.session.user_id,
@@ -44,12 +44,13 @@ router.get('/', async (req, res) => {
                 {
                     model: Comment,
                     attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
+                    include: 
+                    {
+                        model: User,
+                        attributes: ['username', 'twitter', 'github']
+                    },
                 },
             ],
-        },
-        {
-            model: User,
-            attributes: ['username', 'twitter', 'github']
         },
     );
         
