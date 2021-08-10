@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll(
             {
-                attributes: ['id', 'title', 'post_content'],
+                attributes: ['id', 'title', 'post_content', 'createdAt'],
                 include: [
                     {
                         model: User,
