@@ -21,24 +21,23 @@ router.get('/', async (req, res) => {
 });
 
 //Create new comment
-router.post('/', async (req, res) => {
-    try {
-
-        if (req.session) {
-            const commentData = await Comment.create({
-                user_id: req.session.user_id,
-                post_id: req.body.post_id,
-                comment_content: req.body.comment_content,
+router.post('/', withAuth, (req, res) => {
+    console.log(req.body);
+    if (req.session) {
+        Comment.create({
+            comment_text: req.body.comment_content,
+            post_id: req.body.post_id,
+            user_id: req.session.user_id,
+        })
+        console.log(commentData);
+            .then(commentData => res.json(commentData))
+            .catch(e => {
+                console.log(e);
+                res.status(400).json(e);
             });
-            res.status(200).json(commentData);
-        }
-        res.status(404).json({ message: 'Something went wrong!' });
-
-    } catch (e) {
-        console.log(e);
-        res.status(500).json(e);
     }
 });
+
 
 
 //update existing comment
@@ -55,13 +54,13 @@ router.put('/:id', withAuth, async (req, res) => {
                         id: req.params.id,
                     },
                 });
-                if (!updateComment[0]) {
-                    res.status(404).json({ message: 'No comment found with this id!' });
-                    return;
-                }
-                res.status(200).json(updateComment);
+            if (!updateComment[0]) {
+                res.status(404).json({ message: 'No comment found with this id!' });
+                return;
+            }
+            res.status(200).json(updateComment);
         }
-        
+
     } catch (e) {
         console.log(e);
         res.status(500).json(e);
@@ -72,7 +71,7 @@ router.put('/:id', withAuth, async (req, res) => {
 //Delete comment 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        if(req.session){
+        if (req.session) {
             const deleteComment = await Comment.destroy({
                 where: {
                     id: req.params.id,

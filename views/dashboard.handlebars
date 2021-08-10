@@ -1,5 +1,4 @@
 <div>
-
     <h2 class="uk-heading">Dashboard: Your Blogs</h2>
     <a href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-primary ">Create Blog</button></a>
     <hr>
@@ -7,8 +6,8 @@
 </div>
 <hr>
 <div>
-    {{#each posts as |post|}}
     <h1 class="uk-heading-lead uk-text-center"> Here are your current posts</h1>
+    {{#each posts as |post|}}
     {{> post-info post}}
 </div>
 <hr>

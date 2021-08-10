@@ -6,12 +6,15 @@
 {{#if loggedIn}}
 <form class="comment-form">
   <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Add Comment</legend>
   <div class="uk-margin">
-    <textarea class="uk-textarea-large" rows="5" placeholder="Textarea" name="comment-body"></textarea>
+    <textarea class="uk-textarea-xlarge" rows="5" placeholder="Drag box to enlarge" name="comment-body" maxlength="255"></textarea>
   </div>
 
   <div class="uk-margin">
-    <button class="uk-button uk-button-warning" type="submit">Add Comment</button>
+    
+    <button class="uk-button uk-button-warning" type="submit" id="submit" value="submit">Submit Comment</button>
+    <p><span class="uk-text-danger">*</span>Max. 255 characters </p>
   </div>
   </fieldset>
 </form>
