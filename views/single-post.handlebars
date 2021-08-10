@@ -1,5 +1,7 @@
+<h4><a href="/login">Please login or signup to see comments</a></h4>
 
 {{> post-info post}}
+
 
 
 <!-- only display if logged in -->
@@ -14,15 +16,16 @@
 
   <div class="uk-margin">
     
-    <button class="uk-button uk-button-warning" type="submit" id="submit" value="submit">Submit Comment</button>
+    <button class="uk-button uk-button-default" type="submit" id="submit" value="submit">Submit Comment</button>
     <p><span class="uk-text-danger">*</span>Max. 255 characters </p>
   </div>
   </fieldset>
 </form>
 {{/if}}
 
+{{#if loggedIn}}
 {{> comments post.comments}}
 
-{{#if loggedIn}}
+
 <script src="/js/comment.js"></script>
 {{/if}}
