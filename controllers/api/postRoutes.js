@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
             //include associated user and comment data
-            attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
+            attributes: ['id', 'title', 'post_content', 'user_id', 'createdAt'],
             order: [['created_at', 'DESC']],
             include: [
                 {
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                 },
             ],
         },
@@ -75,7 +75,7 @@ router.get('/:id', async (req, res) => {
                     },
                     {
                         model: Comment,
-                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                        attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                         include: {
                             model: User,
                             attributes: ['username', 'twitter', 'github'],
@@ -88,7 +88,8 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ message:'No post found with that id!'});
             return;
         }
-        res.status(200).json(postData);
+       // const posts = postData.map(post => post.get({ plain: true }));
+        res.render('single-post', { postData, loggedIn: req.session.loggedIn });
     } catch (e) {
     console.log(e);
     res.status(500).json(e);

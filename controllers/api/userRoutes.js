@@ -98,11 +98,11 @@ router.get('/:id', async (req, res) => {
             include: [
                 {
                     model: Post,
-                    attributes: ['id', 'title', 'post_content', 'user_id', 'created_at'],
+                    attributes: ['id', 'title', 'post_content', 'user_id', 'createdAt'],
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'created_at'],
+                    attributes: ['id', 'user_id', 'post_id', 'comment_content', 'createdAt'],
                     include: {
                         model: Post,
                         attributes: ['post_title']
@@ -146,7 +146,7 @@ router.post('/login', async (req, res) => {
             req.session.username = userData.username;
             req.session.twitter = userData.twitter;
             req.session.github = userData.github;
-            req.session.logged_in = true;
+            req.session.loggedIn = true;
 
             res.status(200).json({ user: userData, message: 'Welcome Back!' });
         });
