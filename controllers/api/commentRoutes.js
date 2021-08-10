@@ -22,21 +22,20 @@ router.get('/', async (req, res) => {
 
 //Create new comment
 router.post('/', withAuth, (req, res) => {
-    console.log(req.body);
-    if (req.session) {
         Comment.create({
-            comment_text: req.body.comment_content,
-            post_id: req.body.post_id,
             user_id: req.session.user_id,
+            post_id: req.body.post_id,
+            comment_content: req.body.comment_content,
+            
+            
         })
-        console.log(commentData);
             .then(commentData => res.json(commentData))
             .catch(e => {
                 console.log(e);
                 res.status(400).json(e);
             });
     }
-});
+);
 
 
 

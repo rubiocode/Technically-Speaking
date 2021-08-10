@@ -6,9 +6,10 @@
 {{#if loggedIn}}
 <form class="comment-form">
   <fieldset class="uk-fieldset">
-    <legend class="uk-legend">Add Comment</legend>
+    <legend class="uk-legend">Comment Form</legend>
   <div class="uk-margin">
-    <textarea class="uk-textarea-xlarge" rows="5" placeholder="Drag box to enlarge" name="comment-body" maxlength="255"></textarea>
+    <label for="comment-body">Add Comment here:<span id="post_id">{{post.id}}</span></label>
+    <textarea class="uk-textarea uk-textarea-xlarge" rows="5" placeholder="Drag box to enlarge" name="comment-body" id="comment-body" type="text" maxlength="255"></textarea>
   </div>
 
   <div class="uk-margin">
