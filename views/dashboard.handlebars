@@ -1,17 +1,21 @@
-
-
 <div>
 
-        <h2 class="uk-heading">Dashboard: Your Blogs</h2>
-        <a  href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-primary ">Create Blog</button></a>
-        <hr>
-        {{#if posts.length}}
-    </div>
+    <h2 class="uk-heading">Dashboard: Your Blogs</h2>
+    <a href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-primary ">Create Blog</button></a>
+    <hr>
+    {{#if posts.length}}
+</div>
+<hr>
+<div>
     {{#each posts as |post|}}
     <h1 class="uk-heading-lead uk-text-center"> Here are your current posts</h1>
     {{> post-info post}}
+</div>
+<hr>
+<div class="uk-text-center">
     <a href="/dashboard/edit/{{post.id}}"><button class="uk-button uk-button-warning">Edit Post</button></a>
     || <a href="/dashboard/create/"><button id="create-post" class="uk-button uk-button-muted">Create Post</button></a>
+</div>
 </div>
 
 {{/each}}

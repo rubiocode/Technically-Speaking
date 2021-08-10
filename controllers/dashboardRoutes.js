@@ -72,9 +72,10 @@ router.get('/edit/:id', withAuth, async (req, res) => {
             res.status(404).json({ message: 'Post not found with this id' });
             return;
         }
-
-        res.status(200).json(postData.toJSON());
-        res.render('edit-post', { posts, loggedIn: true });
+        
+        const post = postData.get({plain:true});
+        console.log({post});
+        res.render('edit-post', { post, loggedIn: req.session.loggedIn });
     } catch (e) {
         console.log(e);
         res.status(500).json(e);

@@ -1,8 +1,9 @@
 <article>
-  <a href="/dashboard" class="uk-link-text uk-link-muted"> &larr; Back to Dashboard</a>
-  <form class="edit-post-form" action="">
+  <a href="/dashboard" class="uk-link uk-link-muted" > <span uk-icon="icon: chevron-double-left; ratio: 2"></span> Back to Dashboard</a>
+<hr>
+  <form class="edit-post-form uk-form-width-large uk-margin-large-left">
     <fieldset class="uk-fieldset">
-      <legend class="uk-legend">Edit Blog</legend>>
+      <legend class="uk-legend uk-text-center">Edit Blog</legend>
 
       <div class="uk-margin">
         <label for="post-title">Blog Title:</label>
@@ -12,18 +13,17 @@
       <div class="uk-margin">
         <label for="post-content">Blog Content:</label>
         <textarea class="uk-textarea" name="post-content" rows="5" type="text" value="{{post.post_content}}"
-          placeholder="Textarea">Blog Content</textarea>
+          placeholder="Textarea"></textarea>
       </div>
 
-      <input type="submit" value="Submit" id="submit" class="uk-button uk-button-default">
-      <div>
-        Created By: {{format_date post.createdAt}}
+      <input type="submit" value="Submit" id="submit" class="uk-button uk-button-default">  Created on <span class="uk-text-italic">{{format_date post.created_at}}</span>
         |
         <a class="uk-link-text uk-link-muted" href="/post/{{post.id}}">{{post.comments.length}} {{format_plural
           "comment" post.comments.length}}</a>
       </div>
-      <button type="submit" class="uk-button uk-button-default">Save</button>
-      <button type="button" class="uk-button uk-button-danger delete-post-button">Delete</button>
+      <br></br>
+      <button type="submit" value="submit" id="submit" class="uk-button uk-button-default">Draft</button>
+      <button type="button" value="button" id="button" class="uk-button uk-button-danger delete-post-button">Delete</button>
 
     </fieldset>
   </form>
