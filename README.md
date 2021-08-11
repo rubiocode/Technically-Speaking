@@ -5,7 +5,7 @@
 
 Built with Express-Handlebars
 
-URL of the Heroku deployed application: 
+URL of the Heroku deployed application: https://stark-wave-96695.herokuapp.com/
 
 URL of the GitHub repository: https://github.com/rubiocode/Technically-Speaking
 
