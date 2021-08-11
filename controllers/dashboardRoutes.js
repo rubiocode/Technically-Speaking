@@ -120,7 +120,7 @@ router.get('/create/', withAuth, (req, res) => {
         });
 });
 
-
+///////////  DELETE AND EDIT POST JS FUNCTIONS NOT WORKING PROPERLY////////////////////////////////////
 //update existing comment
 router.put('/edit/:id', withAuth, async (req, res) => {
     try {

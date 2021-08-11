@@ -1,4 +1,7 @@
-async function editFormHandler(event) {
+
+///////////  DELETE AND EDIT POST JS FUNCTIONS NOT WORKING PROPERLY////////////////////////////////////
+
+/*async function editFormHandler(event) {
     event.preventDefault();
 
     const comment_content = document.querySelector('textarea[name="comment-body"]').value;
@@ -23,4 +26,4 @@ async function editFormHandler(event) {
     }
 }
 
-document.querySelector('#update').addEventListener('click', editFormHandler);
+document.querySelector('#update').addEventListener('click', editFormHandler);*/

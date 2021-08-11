@@ -20,11 +20,12 @@ URL of the GitHub repository: https://github.com/rubiocode/Technically-Speaking
 * [Installation](#installation)
 * [Usage](#usage)
 * [Built With](#built-with)
+* [Future Improvements](#future-improvements)
 * [License](#license)
 
 ## Description
 
-The _Techniccally Speaking_ app implements the MVC paradigm structure and uses Handlebars.js as a template to render pages. In addition, the application uses Express-Session npm package to authenticate the user's email and password as well as Bcrypt package to hash passwords. This is a simple blog application where the user is prompted to log in or sigup and onced logged in the user is able to post, update, and delete blogs and comments. 
+The _Techniccally Speaking_ blog implements the MVC paradigm structure and uses Handlebars.js as a template to render pages. In addition, the application uses Express-Session npm package to authenticate the user's email and password as well as Bcrypt package to hash passwords. This is a simple blog application where the user is prompted to log in or sigup and onced logged in the user is able to post, update, and delete blogs and comments. 
 
 ### User Story
 
@@ -48,8 +49,7 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 - [x] In the dashboard, the user is able to create, update, and delete blogs.
 - [x] When the user opens up a single blog he/she is able to create and post a comment under that blog.
 - [x] The user is able to sign out of the site
-- [x]
-- [x]
+- [x] ** NOT Achieved: delete/update comment 
 
 ## View
 
@@ -68,6 +68,8 @@ Dashboard Page:
 <img src="" alt="Dashboard Page" style="height: auto ; width:20 rem;"/>
 
 ## Installation
+
+Click [here](https://drive.google.com/file/d/1PgiB4x34a8a7TU_3KJq4PTr2H7CKBbWX/view) to see the full functionality of the application. 
 
 To start using this _Technically Speaking_ blog application you must follow these instructions:
 
@@ -124,6 +126,16 @@ Enter password when prompted
 * [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - 
 
 * [MYSQL2](https://www.npmjs.com/package/mysql2) - MySQL2 project is a continuation of MySQL-Native. Protocol parser code was rewritten from scratch and api changed to match popular mysqljs/mysql.
+
+## Future Improvements
+
+Future improvements to this code: 
+
+* Login and signup function do not render the dashboard. The is user successfully being logged or signed up but the page is not rendering the changes. Temporary fix: refresh the page and you will be routed to the dashboard page.  
+
+* Trying to login with a 'seed user' creates a 404 'Bad Request' error. However, the signup function working properly and when signing in with a new real user the login function works properly and no 404 error messages are rendered.
+
+* Delete and edit comment functions not working properly. There are no handlebars for them and due to time, unable to keep working on them. Future fix: add an edit- comment handlebar that renders in the dashboard for user to modify or delete his/her own comments. 
 
 
 ## License

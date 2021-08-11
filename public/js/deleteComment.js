@@ -1,4 +1,7 @@
-async function deleteFormHandler(event) {
+///////////  DELETE AND EDIT POST JS FUNCTIONS NOT WORKING PROPERLY////////////////////////////////////
+
+
+/*async function deleteFormHandler(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[
@@ -23,4 +26,4 @@ async function deleteFormHandler(event) {
 
 }
 
-document.querySelector('#delete').addEventListener('click', deleteFormHandler);
+document.querySelector('#delete').addEventListener('click', deleteFormHandler);*/
