@@ -14,6 +14,7 @@ const sequelize = require('../config/connection');
 
 //Get all personal posts from database
 router.get('/', withAuth, async (req, res) => {
+    console.log('YEEEEEEEEEEEEEEEEEEEE')
     try {
         const postData = await Post.findAll(
             {

@@ -59,13 +59,13 @@ This is what the application looks like:
 
 Landing Page: 
 
-<img src="" alt="Landing Page" style="height: auto ; width:20 rem;"/>
+<img src="public/images/LandingPage .png" alt="Landing Page" style="height: 20rem ; width:20 rem;"/>
 
 
 
 Dashboard Page:
 
-<img src="" alt="Dashboard Page" style="height: auto ; width:20 rem;"/>
+<img src="public/images/Dashboard.png" alt="Dashboard Page" style="height: 20rem ; width:20 rem;"/>
 
 ## Installation
 
@@ -131,9 +131,7 @@ Enter password when prompted
 
 Future improvements to this code: 
 
-* Login and signup function do not render the dashboard. The is user successfully being logged or signed up but the page is not rendering the changes. Temporary fix: refresh the page and you will be routed to the dashboard page.  
-
-* Trying to login with a 'seed user' creates a 404 'Bad Request' error. However, the signup function working properly and when signing in with a new real user the login function works properly and no 404 error messages are rendered.
+* Login and signup function do not render redirect automatically. The is user successfully being logged or signed up but the page is not rendering the changes. Temporary fix: refresh the page and you will be routed to the dashboard/homepage page.
 
 * Delete and edit comment functions not working properly. There are no handlebars for them and due to time, unable to keep working on them. Future fix: add an edit- comment handlebar that renders in the dashboard for user to modify or delete his/her own comments. 
 
