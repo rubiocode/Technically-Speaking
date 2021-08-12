@@ -131,8 +131,6 @@ Enter password when prompted
 
 Future improvements to this code: 
 
-* Login and signup function do not render redirect automatically. The user successfully being logged or signed up but the page is not rendering the changes. Temporary fix: refresh the page and you will be routed to the dashboard/homepage page. ----> After deploying in Heroku app the login function is rendering bad request. User can still go through the sign up option. 
-
 * Delete and edit comment functions not working properly. There are no handlebars for them and due to time, unable to keep working on them. Future fix: add an edit- comment handlebar that renders in the dashboard for user to modify or delete his/her own comments. 
 
 
